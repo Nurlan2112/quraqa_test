@@ -1,0 +1,6 @@
+.PostsItem {
+  margin-bottom: 10px;
+}
+.PostsItem:last-child {
+  margin-bottom: 0;
+}

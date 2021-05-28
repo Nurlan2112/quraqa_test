@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, Switch } from 'react-router';
+import Main from './containers/Main/Main';
+import AppNavBar from './components/UI/AppNavBar/AppNavBar';
+import PostsContainer from './containers/Posts/PostsContainer';
+import Login from './containers/Login/Login';
+import ProfileContainer from './containers/Profile/ProfileContainer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AppNavBar />
+      <div className="App">
+        <Switch>
+          <Route path='/posts' exact component={PostsContainer} />
+          <Route path='/login' exact component={Login} />
+          <Route path='/profile' exact component={ProfileContainer} />
+          <Route path='/' exact component={Main} />
+        </Switch>
+      </div>
+    </>
   );
 }
 
