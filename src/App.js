@@ -1,12 +1,21 @@
 import './App.css';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
+import {useSelector} from 'react-redux';
 import Main from './containers/Main/Main';
 import AppNavBar from './components/UI/AppNavBar/AppNavBar';
 import PostsContainer from './containers/Posts/PostsContainer';
 import Login from './containers/Login/Login';
 import ProfileContainer from './containers/Profile/ProfileContainer';
 
+const ProtectedRoute = ({isAllowed, redirectTo, ...props}) => {
+  return isAllowed ?
+      <Route {...props} /> :
+      <Redirect to={redirectTo}/>
+};
+
+
 function App() {
+  const isAuthorized = useSelector(state=>state.user.isAuthorized);
   return (
     <>
       <AppNavBar />
@@ -14,7 +23,11 @@ function App() {
         <Switch>
           <Route path='/posts' exact component={PostsContainer} />
           <Route path='/login' exact component={Login} />
-          <Route path='/profile' exact component={ProfileContainer} />
+          <ProtectedRoute isAllowed={!!isAuthorized}
+                          redirectTo='/login'
+                          path='/profile'
+                          exac
+                          component={ProfileContainer} />
           <Route path='/' exact component={Main} />
         </Switch>
       </div>

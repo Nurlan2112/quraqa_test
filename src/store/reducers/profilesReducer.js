@@ -1,7 +1,7 @@
 import { FETCH_PROFILE_ERROR, FETCH_PROFILE_REQUEST, FETCH_PROFILE_SUCCESS } from "../ationTypes";
 
 const initState = {
-  profile: {},
+  profile: '',
   error: null,
   isLoading: false
 };

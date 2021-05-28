@@ -13,7 +13,7 @@ const ProfileContainer = () => {
     dispatch(fetchProfile());
   }, [dispatch]);
 
-  const profileElem = profile ?
+  const profileElem = !!profile ?
                       <Profile name={profile.name}
                                email={profile.email}
                                city={profile.address.city}
